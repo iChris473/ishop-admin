@@ -30,7 +30,7 @@ export default function Arrival() {
           </h1>
           <button onClick={() => navigate("/new?q=arrivals")} className="border border-gray-400 p-2 rounded-md text-sm font-bold hover:bg-gray-800 hover:text-white">Add Arriving Products</button>
         </div>
-        <div className="p-5">
+        <div className="p-5 w-full">
           <Datatables />
           <div className="flex justify-end">
             <Pagination />

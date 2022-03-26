@@ -22,15 +22,16 @@ export default function NewProduct() {
       >
         <Sidebar />
       </div>
-      <div className="col-span-4 md:col-span-3 mt-20">
-        <div className="p-5">
+      <div className="col-span-4 md:col-span-3 mt-20 p-5 w-full">
+        <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-wide text-green-600 capitalize">
             Update Perfume
           </h1>
+          <button className="text-black font-bold tracking-wider py-2 px-5 border border-gray-800 rounded-md max-w-[500px]">Delete</button>
+        </div>
           <div className="mt-6 p-2">
             <EditPerfume />
           </div>
-        </div>
       </div>
     </div>
   );

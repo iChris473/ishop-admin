@@ -1,8 +1,20 @@
 import { CogIcon, CreditCardIcon, LogoutIcon, ShoppingBagIcon, TableIcon, TruckIcon, UserIcon, UsersIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 
 export default function Sidebar() {
+
+  const {user, dispatch} = useContext(AuthContext)
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    console.log("logging out")
+    localStorage.setItem("admin", null)
+    dispatch({type: "LOGIN_SUCCESS", payload:null})
+    navigate("/login")
+  }
   return (
     <div className="bg-gray-50 h-screen">
       {/* Lists */}
@@ -51,19 +63,18 @@ export default function Sidebar() {
             <p className="text-sm font-bold text-gray-600">Delivery</p>
           </div>
         </div>
-        <div className=" p-1 cursor-pointer hover:bg-gray-100">
-          <div className="flex items-center justify-start m-2 gap-5">
-            <CogIcon className="h-7 text-blue-600" />
-            <p className="text-sm font-bold text-gray-600">Settings</p>
+        <Link to="/settings">
+          <div className=" p-1 cursor-pointer hover:bg-gray-100">
+            <div className="flex items-center justify-start m-2 gap-5">
+              <CogIcon className="h-7 text-blue-600" />
+              <p className="text-sm font-bold text-gray-600">Settings</p>
+            </div>
           </div>
-        </div>
-        <div className=" p-1 cursor-pointer hover:bg-gray-100">
-          <div className="flex items-center justify-start m-2 gap-5">
-            <UserIcon className="h-7 text-blue-600" />
-            <p className="text-sm font-bold text-gray-600">Profile</p>
-          </div>
-        </div>
-        <div className=" p-1 cursor-pointer hover:bg-gray-100">
+        </Link>
+        <div
+          onClick={handleLogout}
+          className=" p-1 cursor-pointer hover:bg-gray-100"
+        >
           <div className="flex items-center justify-start m-2 gap-5">
             <LogoutIcon className="h-7 text-blue-600" />
             <p className="text-sm font-bold text-gray-600">Log Out</p>

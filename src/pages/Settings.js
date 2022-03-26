@@ -1,7 +1,9 @@
 
+
 import Datatables from "../components/Datatables";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import EditAccount from "../components/EditAccount";
 import { useState } from "react";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router";
@@ -24,19 +26,11 @@ export default function List() {
         <Sidebar />
       </div>
       <div className="col-span-4 md:col-span-3 mt-24">
-        <div className="flex items-center justify-between w-[95%] mx-auto">
-          <h1 className="text-2xl tracking-wider ml-5 font-bold text-gray-600">
-            Products
-          </h1>
-          <button onClick={() => navigate("/new?q=product")} className="border border-gray-400 p-2 rounded-md text-sm font-bold hover:bg-gray-800 hover:text-white">
-            Add Product
-          </button>
-        </div>
-        <div className="p-5 w-full">
-          <Datatables />
-          <div className="flex justify-end">
-            <Pagination />
-          </div>
+        <h1 className="text-2xl tracking-wider ml-5 font-bold text-gray-600">
+          Settings
+        </h1>
+        <div className="flex items-center justify-between w-[95%] mx-auto m-5">
+          <EditAccount />
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const BASE_URL = "https://iperfume.herokuapp.com/api";
 const user = JSON.parse(localStorage.getItem("user"))
 
 export const publicRequest = axios.create({
-  baseURL: BASE_URL,
+  baseURL: "https://iperfume.herokuapp.com/api",
 });
 
 export const userRequest = axios.create({

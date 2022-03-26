@@ -89,7 +89,7 @@ export default function AddProduct() {
             <option value="female">Female</option>
           </select>
           </div>
-          <button className="text-white font-bold tracking-wider p-2 bg-orange-600 rounded-md block w-full mx-auto max-w-[500px]">Update</button>
+          <button type="submit" className="text-white font-bold tracking-wider p-2 bg-orange-600 rounded-md block w-full mx-auto max-w-[500px]">Update</button>
         </form>
       </div>
     </div>

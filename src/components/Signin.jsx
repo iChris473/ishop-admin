@@ -31,7 +31,8 @@ export default function Signin() {
        password: password.current.value
      }
     try {
-      const res = await publicRequest.post("/user/login", newUser);
+      const res = await publicRequest.post("/admin/login", newUser);
+      console.log(res.data)
       dispatch({type: "LOGIN_SUCCESS", payload:res.data})
       navigate('/')
     } catch (error) {
@@ -78,14 +79,9 @@ export default function Signin() {
                 className="border text-lg outline-none focus-ring-0 p-2 rounded-md focus:border-green-200 w-full "
               />
             </div>
-            <button type="submit" className="bg-orange-600 p-1 rounded-lg w-full text-white font-semibold tracking-wide text-md">
+            <button type="submit" className="px-2 py-3 rounded-lg w-full text-white bg-gray-800 font-semibold tracking-wide text-md">
               {loading ? "Sginin in..." : "Sign In"}
             </button>
-            <Link to="/register">
-              <p className="mt-5 cursor-pointer text-gray-700 font-semibold tracking-wide text-xs text-center">
-                Create an account
-              </p>
-            </Link>
           </form>
         </div>
       </div>
