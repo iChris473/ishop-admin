@@ -102,7 +102,7 @@ export default function Tables() {
               </StyledTableCell>
               <StyledTableCell align="left">
                 <p className="font-bold text-md text-gray-700 whitespace-nowrap">
-                  {row.name}
+                  {row.price}
                 </p>
               </StyledTableCell>
               <StyledTableCell align="left">
