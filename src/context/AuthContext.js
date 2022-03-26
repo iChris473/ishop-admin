@@ -7,7 +7,6 @@ const INTITIAL_STATE = {
     user: JSON.parse(localStorage.getItem('admin'))  || null,
     isFetching: false,
     error: false,
-    time: null
 };
 
 export  const AuthContext = createContext(INTITIAL_STATE);

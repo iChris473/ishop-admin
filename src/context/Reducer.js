@@ -8,7 +8,6 @@ const AuthReducer = (state, action) => {
                 user: null,
                 isFetching: true,
                 error: false,
-                time: null
             }
             break;
         case 'LOGIN_SUCCESS':
@@ -23,7 +22,6 @@ const AuthReducer = (state, action) => {
                 user: null,
                 isFetching: false,
                 error: true,
-                time: null
             }
             break;
     
