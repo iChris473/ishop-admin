@@ -18,7 +18,8 @@ import NewProduct from "./pages/NewProduct";
 import About from "./pages/About";
 import Edit from "./pages/Edit";
 import Settings from "./pages/Settings";
-import Register from "./pages/Register";
+import Order from "./pages/Order";
+import Delivery from "./pages/Delivery";
 
 function App() {
   const {user} = useContext(AuthContext)
@@ -34,6 +35,8 @@ function App() {
         <Route path={`/edit`} element={ user ? <Edit /> :  <Login />}  />
         <Route path={`/login`} element={ user ? <Home /> : <Login /> } />          
         <Route path={`/settings`} element={ user ? <Settings /> : <Login /> } />          
+        <Route path={`/order`} element={ user ? <Order /> : <Login /> } />          
+        <Route path={`/delivery`} element={ user ? <Delivery /> : <Login /> } />          
       </Routes>
     </>
   );

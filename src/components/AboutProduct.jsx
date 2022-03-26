@@ -7,7 +7,7 @@ export default function AddProduct() {
 
   const [counter, setCounter] = useState(1)
   const [product, SetProduct] = useRecoilState(productItem)
-  console.log(product)
+
   return (
     <div className="w-[99%] md:w-[95%] mx-auto p-4 border rounded-md border-gray-200 max-w-[950px] shadow-md">
       <div className="flex flex-col gap-5 md:grid grid-cols-5 space-x-5">

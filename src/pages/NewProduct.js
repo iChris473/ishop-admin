@@ -7,7 +7,7 @@ import AddProduct from "../components/AddProduct"
 
 export default function NewProduct() {
     const [mobile, setMobile] = useState(false)
-    const [query, setQuery] = useState("Product")
+    const [query, setQuery] = useState("product")
     useEffect(() => {
         setQuery(window.location.href.split("/")[3].split("=")[1])
     }, [window])
@@ -32,7 +32,7 @@ export default function NewProduct() {
             Add {query}
           </h1>
           <div className="mt-6 p-2">
-            <AddProduct />
+            <AddProduct query={query} />
           </div>
         </div>
       </div>

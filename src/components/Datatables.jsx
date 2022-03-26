@@ -35,7 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function Tables() {
+export default function Tables({query}) {
 
   const {user} = React.useContext(AuthContext)
   const request = axios.create({
@@ -46,14 +46,24 @@ export default function Tables() {
   const navigate = useNavigate()
   const [productItems, SetProductItems] = useRecoilState(productItem)
   const [allProducts, setAllProducts] = React.useState([])
+  const [fetching, setFetching] = React.useState(true)
+
   React.useEffect(() => {
     const getProducts = async () => {
       try{
-        const res = await request.get("/product/get")
-        console.log(res.data)
-        setAllProducts(res.data)
+        if(query == "order"){
+          const res = await request.get(`/${query}/get/${user.id}`)
+          // console.log(res.data)
+          setAllProducts(res.data)
+          setFetching(false)
+        } else {
+            const res = await request.get(`/${query}/get`);
+            setAllProducts(res.data);
+            setFetching(false);
+        }
       } catch(err) {
         console.log(err)
+        setFetching(false)
       }
     }
     getProducts()
@@ -61,69 +71,94 @@ export default function Tables() {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="left">
-              <p className="flex font-bold text-sm text-white whitespace-nowrap">
-                Perfume
-              </p>
-            </StyledTableCell>
-            <StyledTableCell align="left">
-              <p className="flex font-bold text-sm text-white whitespace-nowrap">
-                Price
-              </p>
-            </StyledTableCell>
-            <StyledTableCell align="left">
-              <p className="flex font-bold text-sm text-white whitespace-nowrap">
-                Stock
-              </p>
-            </StyledTableCell>
-            <StyledTableCell align="left">
-              <p className="flex font-bold text-sm text-white whitespace-nowrap">
-                Action
-              </p>
-            </StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {allProducts.map((row) => (
-            <StyledTableRow key={row._id}>
-              <StyledTableCell component="th" scope="row">
-                <div className="flex items-center justify-between gap-2">
-                  <img
-                    src={row.picture}
-                    className="h-10 w-10"
-                  />
-                  <p className="flex-1 font-bold text-md text-gray-700 whitespace-nowrap">
-                    {row.name}
+      {fetching ? (
+        <h1 className="text-center mx-auto block w-full my-20 text-2xl font-bold text-gray-600">
+          Fetching Products...
+        </h1>
+      ) : (
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left">
+                <p className="flex font-bold text-sm text-white whitespace-nowrap">
+                  Perfume
+                </p>
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <p className="flex font-bold text-sm text-white whitespace-nowrap">
+                  Price (NGN)
+                </p>
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <p className="flex font-bold text-sm text-white whitespace-nowrap">
+                  Stock
+                </p>
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <p className="flex font-bold text-sm text-white whitespace-nowrap">
+                  Category
+                </p>
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <p className="flex font-bold text-sm text-white whitespace-nowrap">
+                  Action
+                </p>
+              </StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {allProducts.map((row) => (
+              <StyledTableRow key={row?._id}>
+                <StyledTableCell component="th" scope="row">
+                  <div className="flex items-center justify-between gap-2">
+                    <img src={row?.picture} className="h-10 w-10" />
+                    <p className="flex-1 font-bold text-md text-gray-700 whitespace-nowrap">
+                      {row?.name}
+                    </p>
+                  </div>
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <p className="font-bold text-md text-gray-700 whitespace-nowrap">
+                    {row?.price?.toLocaleString()}
                   </p>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <p className="font-bold text-md text-gray-700 whitespace-nowrap">
-                  {row.price}
-                </p>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <p className="flex font-bold text-sm text-gray-700 whitespace-nowrap">
-                  {row.quantity}
-                </p>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <div className="flex items-center justify-start gap-3">
-                  <button onClick={() => {SetProductItems(row); navigate("/about")}} className="font-bold text-md p-1 px-2 text-white text-center rounded-md bg-green-600 opacity-80">
-                    View
-                  </button>
-                  <button onClick={() => {SetProductItems(row); navigate("/edit")}} className="font-bold text-md p-1 px-2 text-center text-white rounded-md bg-pink-600 opacity-80">
-                    Edit
-                  </button>
-                </div>
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <p className="flex font-bold text-sm text-gray-700 whitespace-nowrap">
+                    {row?.quantity}
+                  </p>
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <p className="flex font-bold text-sm text-gray-700 whitespace-nowrap capitalize">
+                    {row?.category}
+                  </p>
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <div className="flex items-center justify-start gap-3">
+                    <button
+                      onClick={() => {
+                        SetProductItems(row);
+                        navigate("/about");
+                      }}
+                      className="font-bold text-md p-1 px-2 text-white text-center rounded-md bg-green-600 opacity-80"
+                    >
+                      View
+                    </button>
+                    <button
+                      onClick={() => {
+                        SetProductItems(row);
+                        navigate(`/edit?q=${query}`);
+                      }}
+                      className="font-bold text-md p-1 px-2 text-center text-white rounded-md bg-pink-600 opacity-80"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </TableContainer>
   );
 }

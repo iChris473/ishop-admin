@@ -24,14 +24,11 @@ export default function Arrival() {
         <Sidebar />
       </div>
       <div className="col-span-4 md:col-span-3 mt-24 flex flex-col items-center">
-        <div className="flex items-center justify-between w-[95%] mx-auto">
-          <h1 className="text-2xl tracking-wider ml-5 font-bold text-gray-600">
-            New Arrivals
+          <h1 className="text-2xl tracking-wider text-left w-full ml-10 mt-10 font-bold text-gray-600">
+            All Orders
           </h1>
-          <button onClick={() => navigate("/new?q=arrival")} className="border border-gray-400 p-2 rounded-md text-sm font-bold hover:bg-gray-800 hover:text-white">Add Arriving Products</button>
-        </div>
         <div className="p-5 w-full">
-          <Datatables query={"arrival"} />
+          <Datatables query={"order"} />
           <div className="flex justify-end">
             <Pagination />
           </div>

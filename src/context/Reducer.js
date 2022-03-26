@@ -7,7 +7,8 @@ const AuthReducer = (state, action) => {
             return {
                 user: null,
                 isFetching: true,
-                error: false
+                error: false,
+                time: null
             }
             break;
         case 'LOGIN_SUCCESS':
@@ -21,7 +22,8 @@ const AuthReducer = (state, action) => {
             return {
                 user: null,
                 isFetching: false,
-                error: true
+                error: true,
+                time: null
             }
             break;
     

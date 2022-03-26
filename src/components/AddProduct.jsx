@@ -6,8 +6,8 @@ import storage from "../firebase"
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 
-export default function AddProduct() {
-  
+export default function AddProduct({query}) {
+
   const {user} = useContext(AuthContext)
   const request = axios.create({
     baseURL: "https://iperfume.herokuapp.com/api",
@@ -79,7 +79,7 @@ export default function AddProduct() {
     }
 
     try {
-     const res = await request.post(`/product/create/${user.id}`, newProduct)
+     const res = await request.post(`/${query}/create/${user.id}`, newProduct)
      setLoading(false);
       name.current.value = ""
       price.current.value = ""

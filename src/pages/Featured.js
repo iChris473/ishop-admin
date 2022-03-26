@@ -32,7 +32,7 @@ export default function Featured() {
           <button onClick={() => navigate("/new?q=featured")} className="border border-gray-400 p-2 rounded-md text-sm font-bold hover:bg-gray-800 hover:text-white">Add Featured Product</button>
         </div>
         <div className="p-5 w-full">
-          <Datatables />
+          <Datatables query={"featured"} />
           <div className="flex justify-end">
             <Pagination />
           </div>

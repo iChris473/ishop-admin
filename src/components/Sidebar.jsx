@@ -51,18 +51,22 @@ export default function Sidebar() {
             </div>
           </div>
         </Link>
-        <div className=" p-1 cursor-pointer hover:bg-gray-100">
-          <div className="flex items-center justify-start m-2 gap-5">
-            <CreditCardIcon className="h-7 text-blue-600" />
-            <p className="text-sm font-bold text-gray-600">Orders</p>
+        <Link to="/order">
+          <div className=" p-1 cursor-pointer hover:bg-gray-100">
+            <div className="flex items-center justify-start m-2 gap-5">
+              <CreditCardIcon className="h-7 text-blue-600" />
+              <p className="text-sm font-bold text-gray-600">Orders</p>
+            </div>
           </div>
-        </div>
-        <div className=" p-1 cursor-pointer hover:bg-gray-100">
-          <div className="flex items-center justify-start m-2 gap-5">
-            <TruckIcon className="h-7 text-blue-600" />
-            <p className="text-sm font-bold text-gray-600">Delivery</p>
+        </Link>
+        <Link to="/delivery">
+          <div className=" p-1 cursor-pointer hover:bg-gray-100">
+            <div className="flex items-center justify-start m-2 gap-5">
+              <TruckIcon className="h-7 text-blue-600" />
+              <p className="text-sm font-bold text-gray-600">Delivery</p>
+            </div>
           </div>
-        </div>
+        </Link>
         <Link to="/settings">
           <div className=" p-1 cursor-pointer hover:bg-gray-100">
             <div className="flex items-center justify-start m-2 gap-5">

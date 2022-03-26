@@ -33,7 +33,7 @@ export default function List() {
           </button>
         </div>
         <div className="p-5 w-full">
-          <Datatables />
+          <Datatables query={"product"} />
           <div className="flex justify-end">
             <Pagination />
           </div>
